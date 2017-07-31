@@ -110,14 +110,6 @@ public class ReactNestedScrollViewManager
         view.setEndFillColor(color);
     }
 
-    /**
-     * Controls overScroll behaviour
-     */
-    @ReactProp(name = "overScrollMode")
-    public void setOverScrollMode(ReactNestedScrollView view, String value) {
-        view.setOverScrollMode(ReactScrollViewHelper.parseOverScrollMode(value));
-    }
-
     @Override
     public @Nullable Map<String, Integer> getCommandsMap() {
         return ReactScrollViewCommandHelper.getCommandsMap();
@@ -140,20 +132,6 @@ public class ReactNestedScrollViewManager
         } else {
             scrollView.scrollTo(data.mDestX, data.mDestY);
         }
-    }
-
-    @Override
-    public void scrollToEnd(
-        ReactNestedScrollView scrollView,
-        ReactScrollViewCommandHelper.ScrollToEndCommandData data) {
-      // ScrollView always has one child - the scrollable area
-      int bottom =
-        scrollView.getChildAt(0).getHeight() + scrollView.getPaddingBottom();
-      if (data.mAnimated) {
-        scrollView.smoothScrollTo(scrollView.getScrollX(), bottom);
-      } else {
-        scrollView.scrollTo(scrollView.getScrollX(), bottom);
-      }
     }
 
     @Override
